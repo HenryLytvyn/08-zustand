@@ -12,18 +12,20 @@ type Props = {
 
 export default function NoteItem({ item, isPending, removeItem }: Props) {
   return (
-    <li key={item.id} className={css.listItem}>
+    <li className={css.listItem}>
       <h2 className={css.title}>{item.title}</h2>
       <p className={css.content}>{item.content}</p>
       <div className={css.footer}>
         <span className={css.tag}>{item.tag}</span>
-        <Link href={`/notes/${item.id}`}>View details</Link>
+        <Link className={css.link} href={`/notes/${item.id}`}>
+          View details
+        </Link>
         <button
+          className={css.button}
           onClick={() => {
             removeItem(item.id);
           }}
           disabled={isPending}
-          className={css.button}
         >
           Delete
         </button>
