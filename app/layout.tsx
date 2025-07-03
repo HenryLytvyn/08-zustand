@@ -4,6 +4,7 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
+import css from './Home.module.css';
 
 export const metadata: Metadata = {
   title: 'Web app to create and manage your own notes by categories',
@@ -55,7 +56,7 @@ export default function RootLayout({
       <body className={roboto.variable}>
         <TanStackProvider>
           <Header />
-          <main>
+          <main className={css.main}>
             {children}
             {modal}
           </main>

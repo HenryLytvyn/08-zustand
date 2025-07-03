@@ -23,7 +23,6 @@ export default function NotesClient({ initialData, tag }: Props) {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [isNewEditOpen, setIsNewEditOpen] = useState(false);
-  // const [isPreviewOpen, setIsPreviewOpen] = useState(false)
   const [debouncedQuery] = useDebounce(search, 1000);
 
   const allNotes = useQuery({
