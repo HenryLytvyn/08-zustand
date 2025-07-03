@@ -1,4 +1,24 @@
+import { Metadata } from 'next';
 import css from './Home.module.css';
+
+export const metadata: Metadata = {
+  title: 'Page not found',
+  description: 'noindex, nofollow',
+  openGraph: {
+    title: 'Page not found',
+    description:
+      "The page you're looking for doesn't exist or has been moved. Try going back to the homepage or explore other notes.",
+    images: [
+      {
+        url: '/page-note-found.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'page not found',
+      },
+    ],
+    siteName: 'NoteHub',
+  },
+};
 
 export default function NotFound() {
   return (
