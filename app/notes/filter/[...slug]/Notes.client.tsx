@@ -11,8 +11,9 @@ import SearchBox from '@/components/SearchBox/SearchBox';
 import Pagination from '@/components/Pagination/Pagination';
 import NoteList from '@/components/NoteList/NoteList';
 import { ResponseGetData } from '@/types/ResponseGetData';
-import Modal from '@/components/Modal/Modal';
-import NoteForm from '@/components/NoteForm/NoteForm';
+// import Modal from '@/components/Modal/Modal';
+// import NoteForm from '@/components/NoteForm/NoteForm';
+import Link from 'next/link';
 
 type Props = {
   initialData: ResponseGetData;
@@ -22,7 +23,7 @@ type Props = {
 export default function NotesClient({ initialData, tag }: Props) {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
-  const [isNewEditOpen, setIsNewEditOpen] = useState(false);
+  // const [isNewEditOpen, setIsNewEditOpen] = useState(false);
   const [debouncedQuery] = useDebounce(search, 1000);
 
   const allNotes = useQuery({
@@ -50,23 +51,18 @@ export default function NotesClient({ initialData, tag }: Props) {
             onPageChange={setPage}
           />
         )}
-        <button
-          className={css.button}
-          onClick={() => {
-            setIsNewEditOpen(true);
-          }}
-        >
+        <Link href={'/notes/action/create'} className={css.button}>
           Create note +
-        </button>
+        </Link>
       </div>
       {allNotes.isSuccess && allNotes.data.notes.length > 0 && (
         <NoteList items={allNotes.data.notes} />
       )}
-      {isNewEditOpen && (
+      {/* {isNewEditOpen && (
         <Modal onClose={() => setIsNewEditOpen(false)}>
           <NoteForm onClose={() => setIsNewEditOpen(false)} />
         </Modal>
-      )}
+      )} */}
     </div>
   );
 }
