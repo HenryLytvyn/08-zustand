@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Web app to create and manage your own notes by categories',
   description:
     'Create, manage, and organize your notes by categories with a clean and intuitive web app.',
+  icons: {
+    icon: '/favicon.ico',
+  },
 
   openGraph: {
     title: 'Web app to create and manage your own notes by categories',
