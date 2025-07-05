@@ -19,13 +19,14 @@ export default function NoteForm() {
     // mutationFn: async (note: NewNote) => createNote(note),
     mutationFn: createNote,
     onSuccess: () => {
-      clearDraft();
-      router.back();
       queryClient.invalidateQueries({
         queryKey: ['allNotes'],
-        exact: false,
       });
-      // handleCancel();
+      queryClient.refetchQueries({
+        queryKey: ['allNotes'],
+      });
+      router.back();
+      clearDraft();
     },
   });
 
@@ -36,11 +37,10 @@ export default function NoteForm() {
       tag: formData.get('tag') as NewNote['tag'],
     };
     addNote.mutate(note);
-    // actions.resetForm();
   }
 
   function handleCancel() {
-    router.push('/notes/filter/All');
+    router.back();
   }
 
   function handleChange(

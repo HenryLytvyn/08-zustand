@@ -3,7 +3,8 @@ import css from './Home.module.css';
 
 export const metadata: Metadata = {
   title: 'Page not found',
-  description: 'noindex, nofollow',
+  description:
+    "The page you're looking for doesn't exist or has been moved. Try going back to the homepage or explore other notes.",
   openGraph: {
     title: 'Page not found',
     description:
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
       },
     ],
     siteName: 'NoteHub',
+    url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
   },
 };
 

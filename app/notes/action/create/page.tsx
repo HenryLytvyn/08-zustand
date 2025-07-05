@@ -5,11 +5,11 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Create your note here',
   description:
-    'Tap your new task or ideas in form bellow. Select the category for easy access.',
+    'Tap your new task or ideas in form below. Select the category for easy access.',
   openGraph: {
     title: 'Create your note here',
     description:
-      'Tap your new task or ideas in form bellow. Select the category for easy access.',
+      'Tap your new task or ideas in form below. Select the category for easy access.',
     url: 'https://08-zustand-zeta.vercel.app/notes/action/create',
     images: [
       {
