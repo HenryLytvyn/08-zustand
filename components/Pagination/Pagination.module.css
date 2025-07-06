@@ -40,10 +40,10 @@
 
 .active {
   background-color: #0d6efd;
-  border-color: #0d6efd;
+  border-color: #fff;
 }
 
 .active a {
-  color: #fff !important;
+  color: #fff;
   font-weight: 500;
 }
