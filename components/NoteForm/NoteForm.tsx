@@ -1,19 +1,23 @@
 'use client';
 
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import css from './NoteForm.module.css';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createNote } from '@/lib/api';
-// import { FormSchema } from '../../YupSchemes/FormSchema';
+import { FormSchemaValidate } from '../../YupSchemes/FormSchemaValidate';
 import { useRouter } from 'next/navigation';
 import { NewNote } from '@/types/note';
 import { useNoteDraftStore } from '@/lib/store/noteStore';
+import { ValidationError } from 'yup';
 
 export default function NoteForm() {
   const fieldId = useId();
   const queryClient = useQueryClient();
   const router = useRouter();
   const { draft, setDraft, clearDraft } = useNoteDraftStore();
+  const [errors, setErrors] = useState<
+    Partial<Record<'title' | 'content' | 'tag', string>>
+  >({});
 
   const addNote = useMutation({
     // mutationFn: async (note: NewNote) => createNote(note),
@@ -30,13 +34,29 @@ export default function NoteForm() {
     },
   });
 
-  function handleSubmit(formData: FormData) {
-    const note: NewNote = {
-      title: formData.get('title') as string,
-      content: formData.get('content') as string,
-      tag: formData.get('tag') as NewNote['tag'],
-    };
-    addNote.mutate(note);
+  async function handleSubmit(formData: FormData) {
+    try {
+      const note: NewNote = {
+        title: formData.get('title') as string,
+        content: formData.get('content') as string,
+        tag: formData.get('tag') as NewNote['tag'],
+      };
+
+      await FormSchemaValidate.validate(note, { abortEarly: false });
+      setErrors({});
+
+      addNote.mutate(note);
+    } catch (error: unknown) {
+      if (error instanceof ValidationError) {
+        const formattedErrors: Record<string, string> = {};
+        error.inner.forEach(err => {
+          if (err.path) {
+            formattedErrors[err.path] = err.message;
+          }
+        });
+        setErrors(formattedErrors);
+      }
+    }
   }
 
   function handleCancel() {
@@ -63,10 +83,10 @@ export default function NoteForm() {
           type="text"
           name="title"
           className={css.input}
-          required
           defaultValue={draft?.title}
           onChange={handleChange}
         />
+        {errors.title && <div style={{ color: 'red' }}>{errors.title}</div>}
       </div>
 
       <div className={css.formGroup}>
@@ -78,6 +98,7 @@ export default function NoteForm() {
           defaultValue={draft?.content}
           onChange={handleChange}
         />
+        {errors.content && <div style={{ color: 'red' }}>{errors.content}</div>}
       </div>
 
       <div className={css.formGroup}>
@@ -94,6 +115,7 @@ export default function NoteForm() {
           <option value="Personal">Personal</option>
           <option value="Meeting">Meeting</option>
           <option value="Shopping">Shopping</option>
+          {errors.tag && <div style={{ color: 'red' }}>{errors.tag}</div>}
         </select>
       </div>
 
