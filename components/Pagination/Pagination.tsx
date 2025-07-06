@@ -5,7 +5,7 @@ interface PaginationProps {
   totalPages: number;
   currentPage: number;
   onPageChange: (nextPage: number) => void;
-  maxVisible: number;
+  maxVisible?: number;
 }
 
 export default function Pagination({
