@@ -8,16 +8,18 @@
   margin: 0;
 }
 
-.pagination li {
+.pageItem {
   border: 1px solid #dee2e6;
   border-radius: 4px;
   cursor: pointer;
   min-width: 36px;
   height: 36px;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
-.pagination li a {
+.pageLink {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,11 +30,11 @@
   font-size: 14px;
 }
 
-.pagination li:hover {
+.pageItem:hover {
   background-color: #e9ecef;
 }
 
-.pagination li.active:hover {
+.pageItem.active:hover {
   background-color: #0d6efd;
 }
 
