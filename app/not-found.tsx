@@ -18,7 +18,7 @@ export const metadata: Metadata = {
       },
     ],
     siteName: 'NoteHub',
-    url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+    url: 'https://08-zustand-zeta.vercel.app/not-found',
   },
 };
 
