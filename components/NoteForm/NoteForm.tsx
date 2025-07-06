@@ -86,7 +86,8 @@ export default function NoteForm() {
           defaultValue={draft?.title}
           onChange={handleChange}
         />
-        {errors.title && <div style={{ color: 'red' }}>{errors.title}</div>}
+        {(errors.title && <div className={css.error}>{errors.title}</div>) ||
+          '\u00A0'}
       </div>
 
       <div className={css.formGroup}>
@@ -98,7 +99,10 @@ export default function NoteForm() {
           defaultValue={draft?.content}
           onChange={handleChange}
         />
-        {errors.content && <div style={{ color: 'red' }}>{errors.content}</div>}
+        {(errors.content && (
+          <div className={css.error}>{errors.content}</div>
+        )) ||
+          '\u00A0'}
       </div>
 
       <div className={css.formGroup}>
@@ -115,7 +119,8 @@ export default function NoteForm() {
           <option value="Personal">Personal</option>
           <option value="Meeting">Meeting</option>
           <option value="Shopping">Shopping</option>
-          {errors.tag && <div style={{ color: 'red' }}>{errors.tag}</div>}
+          {(errors.tag && <div className={css.error}>{errors.tag}</div>) ||
+            '\u00A0'}
         </select>
       </div>
 
