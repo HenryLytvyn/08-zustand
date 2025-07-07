@@ -1,3 +1,11 @@
+'use client';
+
+import Modal from '@/components/Modal/Modal';
+
 export default function Loading() {
-  return <p>Loading, please wait...</p>;
+  return (
+    <Modal onClose={() => {}}>
+      <p>Loading, please wait...</p>
+    </Modal>
+  );
 }
