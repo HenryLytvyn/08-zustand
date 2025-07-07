@@ -60,7 +60,8 @@ export default function RootLayout({
         <TanStackProvider>
           <Header />
           <main className={css.main}>{children}</main>
-          {modal}
+          {/* {modal} */}
+          <div style={{ position: 'fixed', top: 0, left: 0 }}>{modal}</div>
           <Footer />
         </TanStackProvider>
       </body>
