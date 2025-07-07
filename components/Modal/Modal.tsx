@@ -3,7 +3,6 @@
 import css from './Modal.module.css';
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
-
 import { useLayoutEffect } from 'react';
 
 interface NoteModalProps {
