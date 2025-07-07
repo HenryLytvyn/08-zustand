@@ -1,5 +1,3 @@
-//! SSR component
-
 import { fetchNoteById } from '@/lib/api';
 import {
   dehydrate,
