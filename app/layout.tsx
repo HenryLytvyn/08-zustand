@@ -59,10 +59,8 @@ export default function RootLayout({
       <body className={roboto.variable}>
         <TanStackProvider>
           <Header />
-          <main className={css.main}>
-            {children}
-            {modal}
-          </main>
+          <main className={css.main}>{children}</main>
+          {modal}
           <Footer />
         </TanStackProvider>
       </body>
